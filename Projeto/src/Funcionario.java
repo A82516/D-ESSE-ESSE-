@@ -1,37 +1,45 @@
-public class Cliente {
+public class Funcionario {
 
     private String nome;
     private String password;
     private String mail;
+    private short tipo; // 0 para Funcionário e 1 para Gerente
 
-    public Cliente(){
+    public Funcionario(){
         this.mail = "";
         this.nome = "";
         this.password = "";
+        this.tipo = 0;
     }
 
-    public Cliente(String n, String p, String m){
+    public Funcionario(String n, String p, String m, short x){
         this.nome = n;
         this.password = p;
         this.mail = m;
+        this.tipo = x;
     }
 
-    public Cliente(Cliente c){
+    public Funcionario(Funcionario c){
         this.nome = c.getNome();
         this.password = c.getPassword();
         this.mail = c.getMail();
+        this.tipo = c.getTipo();
     }
 
     public String getNome(){
         return this.nome;
     }
 
-    public String getPassword(){
+    public String getPassword() {
         return this.password;
     }
 
     public String getMail(){
         return this.mail;
+    }
+
+    public short getTipo(){
+        return this.tipo;
     }
 
     public void setNome(String n){
@@ -46,17 +54,22 @@ public class Cliente {
         this.mail =  m;
     }
 
-    public Cliente clone(){
-        return new Cliente(this);
+    public void setTipo(short x){
+        this.tipo = x;
+    }
+
+    public Funcionario clone(){
+        return new Funcionario(this);
     }
 
     public boolean equals(Object o){
         if(o == this) return true;
         if(o == null || o.getClass() != this.getClass()) return false;
 
-        Cliente c = (Cliente) o;
+        Funcionario c = (Funcionario) o;
         return (this.nome == c.getNome() &&
                 this.password == c.getPassword() &&
-                this.mail == c.getMail());
+                this.mail == c.getMail() &&
+                this.tipo == c.getTipo());
     }
 }
