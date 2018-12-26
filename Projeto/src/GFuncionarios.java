@@ -98,4 +98,10 @@ public class GFuncionarios {
         else throw new FuncionarioException("Este email não existe");
         return null;
    }
+
+   public boolean verificaGerente(Funcionario f){
+        if (f.getTipo() == 1) return true;
+        else return false;
+   }
+
 }
