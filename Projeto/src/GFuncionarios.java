@@ -1,30 +1,30 @@
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.TreeMap;
 
-public class ConfiguraFacil {
 
-    private Map<String,Funcionario> funRegistados;
+public class GFuncionarios {
+
+    private Map<String, Funcionario> funRegistados;
     private Funcionario funcionario;
 
-    public Registo(){
+    public GFuncionarios(){
         this.funRegistados = new TreeMap<String, Funcionario>();
         this.funcionario = null;
     }
 
-    public Registo(Map<String,Funcionario> c, Funcionario f){
-        setRegisto(c);
+    public GFuncionarios(Map<String,Funcionario> c, Funcionario f){
+        getGFuncionarios(c);
         this.funcionario = f;
     }
 
-    public Registo(Registo c){
-        this.funRegistados = c.getRegisto();
+    public GFuncionarios(GFuncionarios c){
+        this.funRegistados = c.getGFuncionarios();
         this.funcionario = c.getFuncionario();
     }
 
     //GETS
 
-    public Map<String,Registo> getRegisto(){
+    public Map<String,Funcionario> getGFuncionarios(){
         Map<String,Funcionario> novo = new TreeMap<String,Funcionario>();
         for(Map.Entry<String,Funcionario> i : this.funRegistados.entrySet())
             novo.put(i.getKey(), i.getValue());
@@ -32,13 +32,13 @@ public class ConfiguraFacil {
     }
 
     public Funcionario getFuncionario(){
-      return this.Funcionário;
+      return this.funcionario;
     }
 
 
     //SETS
 
-    public void setRegisto(Map<String, Funcionario> c){
+    public void getGFuncionarios(Map<String, Funcionario> c){
         this.funRegistados =  new TreeMap<String,Funcionario>();
 
         for(Map.Entry<String,Funcionario> i : c.entrySet())
@@ -51,8 +51,8 @@ public class ConfiguraFacil {
 
     //CLONE
 
-    public Registo clone(){
-        return new Registo(this);
+    public GFuncionarios clone(){
+        return new GFuncionarios(this);
     }
 
     //EQUALS
@@ -60,9 +60,9 @@ public class ConfiguraFacil {
     public boolean equals(Object o) {
         if (o == this) return true;
         if ((o == null) || (o.getClass() != this.getClass())) return false;
-        Registo c = (Registo) o;
+        GFuncionarios c = (GFuncionarios) o;
 
-        return (this.funRegistados.equals(c.getRegisto()) &&
+        return (this.funRegistados.equals(c.getGFuncionarios()) &&
                 this.funcionario.equals(c.getFuncionario()));
     }
 
@@ -88,42 +88,14 @@ public class ConfiguraFacil {
        }
    }
 
-   //Login
-
-   public void login (String email, String password) throws LoginException
-   {
-       if(this.funcionario == null){
-           if(funRegistados.containsKey(email)){
-               Funcionario cont = funRegistados.get(email).clone();
-               if(password.equals(cont.getPassword())){
-                   this.funcionario = cont;
-                    if(funcionario.getTipo() == 0) {
-                      try{
-                       menuFuncionario();
-                   }
-                    else try {
-                      menuGerente();
-                    }
-                   catch(OpcaoException e){
-                       System.out.println(e.getMessage());
-                     }
-                   }
-                 }
-               }
-             }
-           }
-
-   //Logout
-
-   public void sairSessao(){
-       this.funcionario = null;
-       try{
-            menuInicial();
-       }
-       catch(OpcaoException e){
-            System.out.println(e.getMessage());
-       }
+   public Funcionario verificaFuncionario(String email, String password) throws FuncionarioException{
+        Funcionario f;
+        if(this.funRegistados.containsKey(email)){
+            funcionario = this.funRegistados.get(email);
+            if(funcionario.getPassword().equals(password))
+                return funcionario;
+        }
+        else throw new FuncionarioException("Este email não existe");
+        return null;
    }
-
-   
 }
