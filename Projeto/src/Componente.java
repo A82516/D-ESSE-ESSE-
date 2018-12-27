@@ -138,4 +138,25 @@ public class Componente {
                 );
     }
 
+    // add Stock
+
+    public void adicionaStock(Integer c){
+        setStock(this.getStock()+c);
+    }
+    // remove c unidades ao stock caso estejam disponíveis, caso contrário dá uma msg
+
+    public void removeStock(Integer c){
+        try {
+            if (c <= this.getStock()) {
+                setStock(this.getStock() - c);
+
+            }
+            else {SemStockException s = new SemStockException("Sem stock");
+                  throw s;}
+        }
+        catch(SemStockException s) {
+            s.printStackTrace();
+        }
+        }
+
 }
