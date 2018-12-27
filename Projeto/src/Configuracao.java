@@ -1,28 +1,39 @@
 import java.awt.*;
 import java.util.Map;
+import java.util.Objects;
 import java.util.TreeMap;
 
 public class Configuracao {
 
+    private Carro carro;
     private Map<Integer, Componente> configcar;
     private Componente componente;
 
     public Configuracao(){
+        this.carro = null;
         this.configcar = new TreeMap<Integer, Componente>();
         this.componente = null;
     }
 
-    public Configuracao(Map<Integer,Componente> c, Componente s){
+    public Configuracao(Carro a, Map<Integer,Componente> c, Componente s){
+        this.carro = a;
         setConfigCar(c);
         this.componente = s;
     }
 
+
     public  Configuracao(Configuracao c){
+        this.carro = c.getCarro();
         this.configcar = c.getConfigCar();
         this.componente = c.getComponente();
     }
 
     // GETS
+
+
+    public Carro getCarro() {
+        return carro;
+    }
 
     public Map<Integer, Componente> getConfigCar(){
         Map<Integer,Componente> novo = new TreeMap<Integer, Componente>();
@@ -36,6 +47,11 @@ public class Configuracao {
     }
 
     //SETS
+
+
+    public void setCarro(Carro carro) {
+        this.carro = carro;
+    }
 
     public void setConfigCar(Map<Integer, Componente> c){
         this.configcar = new TreeMap<Integer, Componente>();
@@ -56,12 +72,14 @@ public class Configuracao {
 
     //EQUALS
 
+
     public boolean equals(Object o){
         if (o == this) return true;
         if ((o == null) || (o.getClass() != this.getClass())) return false;
 
         Configuracao c = (Configuracao) o;
-        return (this.configcar.equals((c.getConfigCar())) &&
+        return (this.carro.equals(c.getCarro()) &&
+                this.configcar.equals((c.getConfigCar())) &&
                 this.componente.equals(c.getComponente()));
     }
 
