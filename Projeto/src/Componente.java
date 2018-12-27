@@ -105,6 +105,22 @@ public class Componente {
 
     public Componente clone() {return new Componente(this); }
 
+
+    //toString
+
+
+    @java.lang.Override
+    public java.lang.String toString() {
+        return "Componente{" +
+                "tipo=" + tipo +
+                ", nome='" + nome + '\'' +
+                ", preco=" + preco +
+                ", incompativeis=" + incompativeis +
+                ", obrigatorios=" + obrigatorios +
+                ", stock=" + stock +
+                '}';
+    }
+
     //Equals
 
 
@@ -122,18 +138,25 @@ public class Componente {
                 );
     }
 
-    //toString
+    // add Stock
 
-    public String toString ()
-    {
-        super.toString();
-        StringBuilder sb = new StringBuilder();
-        sb.append("Tipo: ").append(this.tipo);
-        sb.append("Nome:").append(this.nome);
-        sb.append("Preço: ").append(this.preco);
-        sb.append("Incompativeis:").append(this.incompativeis.toString());
-        sb.append("Obrigatórios:").append(this.obrigatorios.toString());
-        sb.append("Strock: ").append(this.stock);
-        return sb.toString();
+    public void adicionaStock(Integer c){
+        setStock(this.getStock()+c);
     }
+    // remove c unidades ao stock caso estejam disponíveis, caso contrário dá uma msg
+
+    public void removeStock(Integer c){
+        try {
+            if (c <= this.getStock()) {
+                setStock(this.getStock() - c);
+
+            }
+            else {SemStockException s = new SemStockException("Sem stock");
+                  throw s;}
+        }
+        catch(SemStockException s) {
+            s.printStackTrace();
+        }
+        }
+
 }
