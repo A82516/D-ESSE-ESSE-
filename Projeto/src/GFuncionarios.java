@@ -13,19 +13,19 @@ public class GFuncionarios {
     }
 
     public GFuncionarios(Map<String,Funcionario> c, Funcionario f){
-        getGFuncionarios(c);
+        setFunRegistados(c);
         this.funcionario = f;
     }
 
     public GFuncionarios(GFuncionarios c){
-        this.funRegistados = c.getGFuncionarios();
+        this.funRegistados = c.getFunRegistados();
         this.funcionario = c.getFuncionario();
     }
 
     //GETS
 
-    public Map<String,Funcionario> getGFuncionarios(){
-        Map<String,Funcionario> novo = new TreeMap<String,Funcionario>();
+    public Map<String,Funcionario> getFunRegistados(){
+        Map<String,Funcionario> novo = new TreeMap<String, Funcionario>();
         for(Map.Entry<String,Funcionario> i : this.funRegistados.entrySet())
             novo.put(i.getKey(), i.getValue());
         return novo;
@@ -38,7 +38,7 @@ public class GFuncionarios {
 
     //SETS
 
-    public void getGFuncionarios(Map<String, Funcionario> c){
+    public void setFunRegistados(Map<String, Funcionario> c){
         this.funRegistados =  new TreeMap<String,Funcionario>();
 
         for(Map.Entry<String,Funcionario> i : c.entrySet())
@@ -62,7 +62,7 @@ public class GFuncionarios {
         if ((o == null) || (o.getClass() != this.getClass())) return false;
         GFuncionarios c = (GFuncionarios) o;
 
-        return (this.funRegistados.equals(c.getGFuncionarios()) &&
+        return (this.funRegistados.equals(c.getFunRegistados()) &&
                 this.funcionario.equals(c.getFuncionario()));
     }
 
@@ -80,11 +80,11 @@ public class GFuncionarios {
 
     public void registarFuncionario (Funcionario f) throws FuncionarioException{
 
-      if(this.funRegistados.containsKey(f.getMail())){
+      if(this.funRegistados.containsKey(f.getEMail())){
           throw new FuncionarioException ("Ja existe este Funcionario");
        }
        else {
-           this.funRegistados.put(f.getMail(),f);
+           this.funRegistados.put(f.getEMail(),f);
        }
    }
 

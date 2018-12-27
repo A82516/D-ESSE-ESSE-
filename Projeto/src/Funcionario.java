@@ -2,11 +2,11 @@ public class Funcionario {
 
     private String nome;
     private String password;
-    private String mail;
+    private String email;
     private short tipo; // 0 para Funcionário e 1 para Gerente
 
     public Funcionario(){
-        this.mail = "";
+        this.email = "";
         this.nome = "";
         this.password = "";
         this.tipo = 0;
@@ -15,14 +15,14 @@ public class Funcionario {
     public Funcionario(String n, String p, String m, short x){
         this.nome = n;
         this.password = p;
-        this.mail = m;
+        this.email = m;
         this.tipo = x;
     }
 
     public Funcionario(Funcionario c){
         this.nome = c.getNome();
         this.password = c.getPassword();
-        this.mail = c.getMail();
+        this.email = c.getEMail();
         this.tipo = c.getTipo();
     }
 
@@ -34,8 +34,8 @@ public class Funcionario {
         return this.password;
     }
 
-    public String getMail(){
-        return this.mail;
+    public String getEMail(){
+        return this.email;
     }
 
     public short getTipo(){
@@ -50,8 +50,8 @@ public class Funcionario {
         this.password = p;
     }
 
-    public void setMail(String m){
-        this.mail =  m;
+    public void seteMail(String m){
+        this.email =  m;
     }
 
     public void setTipo(short x){
@@ -69,7 +69,7 @@ public class Funcionario {
         Funcionario c = (Funcionario) o;
         return (this.nome == c.getNome() &&
                 this.password == c.getPassword() &&
-                this.mail == c.getMail() &&
+                this.email == c.getEMail() &&
                 this.tipo == c.getTipo());
     }
 }
