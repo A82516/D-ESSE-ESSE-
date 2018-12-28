@@ -127,7 +127,7 @@ public class Encomenda {
 
         Encomenda e = (Encomenda) o;
         return (e.getId() == this.getId() &&
-                e.nomeCliente.equals(this.getNomeCliente()) &&
+                e.getNomeCliente().equals(this.getNomeCliente()) &&
                 e.getNifCliente() == this.getNifCliente() &&
                 e.getTelemovel() == this.getTelemovel() &&
                 e.getPreco() == this.getPreco() &&
