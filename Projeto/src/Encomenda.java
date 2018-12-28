@@ -3,6 +3,7 @@ public class Encomenda {
     private int id;
     private String nomeCliente;
     private int nifCliente;
+    private int telemovel;
     private double preco;
     private Funcionario funcionario;
     private Configuracao configuracao;
@@ -11,15 +12,17 @@ public class Encomenda {
         this.id = 0;
         this.nomeCliente = null;
         this.nifCliente = 0;
+        this.telemovel = 0;
         this.preco = 0;
         this.funcionario = null;
         this.configuracao = null;
     }
 
-    public Encomenda(int a, String b, int c, double d, Funcionario e, Configuracao f){
+    public Encomenda(int a, String b, int c, int t, double d, Funcionario e, Configuracao f){
         this.id = a;
         this.nomeCliente = b;
         this.nifCliente = c;
+        this.telemovel = t;
         this.preco = d;
         this.funcionario = e;
         this.configuracao = f;
@@ -29,6 +32,7 @@ public class Encomenda {
         this.id = e.getId();
         this.nomeCliente = e.getNomeCliente();
         this.nifCliente = e.getNifCliente();
+        this.telemovel = e.getTelemovel();
         this.preco = e.getPreco();
         this.funcionario = e.getFuncionario();
         this.configuracao = e.getConfiguracao();
@@ -46,6 +50,10 @@ public class Encomenda {
 
     public int getNifCliente() {
         return nifCliente;
+    }
+
+    public int getTelemovel() {
+        return telemovel;
     }
 
     public double getPreco() {
@@ -74,6 +82,10 @@ public class Encomenda {
         this.nifCliente = a;
     }
 
+    public void setTelemovel(int a) {
+        this.telemovel = a;
+    }
+
     public void setPreco(double a) {
         this.preco = a;
     }
@@ -99,6 +111,7 @@ public class Encomenda {
         sb.append("id=").append(id);
         sb.append(", nomeCliente='").append(nomeCliente).append('\'');
         sb.append(", nifCliente=").append(nifCliente);
+        sb.append(".Telemovel=").append(telemovel);
         sb.append(", preco=").append(preco);
         sb.append(", funcionario=").append(funcionario);
         sb.append(", configuracao=").append(configuracao);
@@ -116,6 +129,7 @@ public class Encomenda {
         return (e.getId() == this.getId() &&
                 e.nomeCliente.equals(this.getNomeCliente()) &&
                 e.getNifCliente() == this.getNifCliente() &&
+                e.getTelemovel() == this.getTelemovel() &&
                 e.getPreco() == this.getPreco() &&
                 e.getFuncionario().equals(this.getFuncionario()) &&
                 e.getConfiguracao().equals(this.getConfiguracao()));
